@@ -21,6 +21,10 @@
 
 #include <libksnmp/device.h>
 
+#ifndef UINT64_C
+#define UINT64_C(x) x ## ull
+#endif
+
 namespace KSNMP {
 
 /**
@@ -81,29 +85,29 @@ type and index instead of every statistics.
 
 
 */
-	static const uint64_t getIndex		= 0x0000000000000001;
-	static const uint64_t getDescr		= 0x0000000000000002;
-	static const uint64_t getAdminStatus	= 0x0000000000000004;
-	static const uint64_t getOperStatus	= 0x0000000000000008;
-	static const uint64_t getType		= 0x0000000000000010;
-	static const uint64_t getSpeed		= 0x0000000000000020;
-	static const uint64_t getPhysAddress	= 0x0000000000000040;
-	static const uint64_t getMtu		= 0x0000000000000080;
-	static const uint64_t getLastChange	= 0x0000000000000100;
+	static const uint64_t getIndex		= UINT64_C(0x0000000000000001);
+	static const uint64_t getDescr		= UINT64_C(0x0000000000000002);
+	static const uint64_t getAdminStatus	= UINT64_C(0x0000000000000004);
+	static const uint64_t getOperStatus	= UINT64_C(0x0000000000000008);
+	static const uint64_t getType		= UINT64_C(0x0000000000000010);
+	static const uint64_t getSpeed		= UINT64_C(0x0000000000000020);
+	static const uint64_t getPhysAddress	= UINT64_C(0x0000000000000040);
+	static const uint64_t getMtu		= UINT64_C(0x0000000000000080);
+	static const uint64_t getLastChange	= UINT64_C(0x0000000000000100);
 	
-	static const uint64_t getInOctets	= 0x0000000000000200;
-	static const uint64_t getInUcastPkts	= 0x0000000000000400;
-	static const uint64_t getInNUcastPkts	= 0x0000000000000800;
-	static const uint64_t getInDiscards	= 0x0000000000001000;
-	static const uint64_t getInErrors	= 0x0000000000002000;
-	static const uint64_t getInUnknwonProtos= 0x0000000000004000;
+	static const uint64_t getInOctets	= UINT64_C(0x0000000000000200);
+	static const uint64_t getInUcastPkts	= UINT64_C(0x0000000000000400);
+	static const uint64_t getInNUcastPkts	= UINT64_C(0x0000000000000800);
+	static const uint64_t getInDiscards	= UINT64_C(0x0000000000001000);
+	static const uint64_t getInErrors	= UINT64_C(0x0000000000002000);
+	static const uint64_t getInUnknownProtos= UINT64_C(0x0000000000004000);
 	
-	static const uint64_t getOutOctets	= 0x0000000000008000;
-	static const uint64_t getOutUcastPkts	= 0x0000000000010000;
-	static const uint64_t getOutNUCastPkgts	= 0x0000000000020000;
-	static const uint64_t getOutDiscards	= 0x0000000000040000;
-	static const uint64_t getOutErrors	= 0x0000000000080000;
-	static const uint64_t getOutQLen	= 0x0000000000100000;
+	static const uint64_t getOutOctets	= UINT64_C(0x0000000000008000);
+	static const uint64_t getOutUcastPkts	= UINT64_C(0x0000000000010000);
+	static const uint64_t getOutNUcastPkts	= UINT64_C(0x0000000000020000);
+	static const uint64_t getOutDiscards	= UINT64_C(0x0000000000040000);
+	static const uint64_t getOutErrors	= UINT64_C(0x0000000000080000);
+	static const uint64_t getOutQLen	= UINT64_C(0x0000000000100000);
 //@}
 
 //@{
@@ -115,8 +119,8 @@ You can use these flags to define some subset of the entire fields without the
 need to specify them one-by-one
 */
 
-	static const uint64_t getAll		= 0xFFFFFFFFFFFFFFFF;
-	static const uint64_t getNone		= 0x0000000000000000;
+	static const uint64_t getAll		= UINT64_C(0xFFFFFFFFFFFFFFFF);
+	static const uint64_t getNone		= UINT64_C(0x0000000000000000);
 	
 	static const uint64_t getID		= getIndex | getDescr | getType;
 	static const uint64_t getLoad		= getInOctets | getOutOctets;

@@ -219,7 +219,7 @@ bool Session::getVariables(const QStringList &oids, QValueVector<QVariant> &retv
 	return true;
 }
 
-Session *createSession(const QString &peer, const QString &community, SNMPver version)
+Session *createSession(const QString &peer, const QString &community, SNMPVer version)
 {
 	switch(version)
 	{

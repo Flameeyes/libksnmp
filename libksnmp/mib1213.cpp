@@ -18,9 +18,10 @@
  ***************************************************************************/
 
 #ifdef HAVE_CONFIG_H
-#include "config.h"
+# include "config.h"
 #endif
 
+#define __STDC_CONSTANT_MACROS
 #ifdef HAVE_STDINT_H
 # include <stdint.h>
 #elif defined HAVE_SYS_TYPES_H
@@ -110,7 +111,7 @@ QString forwarding(const uint32_t n)
 QString Device1213::physAddress(const QByteArray &ba)
 {
 	QString result;
-	for(int i = 0; i < ba.size()-1; i++)
+	for(uint i = 0; i < ba.size()-1; i++)
 		result += QString::number( ba[i], 16 ) + ":";
 	
 	result.remove( result.length() -1, 1 );
@@ -266,8 +267,11 @@ void Device1213::readInterfaces(uint64_t what)
 		getInterface(i, true, what);
 }
 
-uint32_t Device1213::getIfIndex(const QString &name, bool cache = true)
+uint32_t Device1213::getIfIndex(const QString &name, bool cache)
 {
+	if ( ! cache )
+		readInterfaces(getID);
+	
 	uint maxIf = requestValue("ifNumber.0").toUInt();
 	for(uint i = 1; i < maxIf; i++)
 		if ( m_ifCache[i].ifDescr == name )

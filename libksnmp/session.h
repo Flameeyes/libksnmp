@@ -258,7 +258,7 @@ public:
 @param version Version of protocol to use for the session.
 @return A pointer to a newly created session with the requested parameters.
 */
-Session *createSession(const QString &peer, const QString &community, SNMPver version);
+Session *createSession(const QString &peer, const QString &community, SNMPVer version);
 
 };
 
