@@ -1,15 +1,24 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
 <!DOCTYPE KDevPrjSession>
 <KDevPrjSession>
- <DocsAndViews NumberOfDocuments="2" >
-  <Doc0 NumberOfViews="1" URL="file:///home/flame/devel/sfcvs/libksnmp/README" >
-   <View0 line="21" Type="Source" />
+ <DocsAndViews NumberOfDocuments="4" >
+  <Doc0 NumberOfViews="1" URL="file:///home/flame/devel/sfcvs/libksnmp/tests/ksnmpget.cpp" >
+   <View0 line="47" Type="Source" />
   </Doc0>
-  <Doc1 NumberOfViews="1" URL="file:///home/flame/devel/sfcvs/libksnmp/TODO" >
-   <View0 line="3" Type="Source" />
+  <Doc1 NumberOfViews="1" URL="file:///home/flame/devel/sfcvs/libksnmp/libksnmp/session.cpp" >
+   <View0 line="185" Type="Source" />
   </Doc1>
+  <Doc2 NumberOfViews="1" URL="file:///home/flame/devel/sfcvs/libksnmp/tests/loopget.cpp" >
+   <View0 line="82" Type="Source" />
+  </Doc2>
+  <Doc3 NumberOfViews="1" URL="file:///home/flame/devel/sfcvs/libksnmp/tests/Makefile.am" >
+   <View0 line="5" Type="Source" />
+  </Doc3>
  </DocsAndViews>
  <pluginList>
+  <kdevdebugger>
+   <breakpointList/>
+  </kdevdebugger>
   <kdevbookmarks>
    <bookmarks/>
   </kdevbookmarks>
@@ -19,8 +28,5 @@
    <calltree path="" params="" />
    <kcachegrind path="" />
   </kdevvalgrind>
-  <kdevdebugger>
-   <breakpointList/>
-  </kdevdebugger>
  </pluginList>
 </KDevPrjSession>
