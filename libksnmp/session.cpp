@@ -35,6 +35,9 @@
 
 #include <kdebug.h>
 
+#include <libksnmp/session1.h>
+#include <libksnmp/session2c.h>
+
 namespace KSNMP {
 
 /**
@@ -214,6 +217,19 @@ bool Session::getVariables(const QStringList &oids, QValueVector<QVariant> &retv
 	snmp_free_pdu(response);
 	
 	return true;
+}
+
+Session *createSession(const QString &peer, const QString &community, SNMPver version)
+{
+	switch(version)
+	{
+		case V1:
+			return new Session1(peer, community);
+		case V2c:
+			return new Session2c(peer, community);
+	}
+	
+	return NULL; // should never happen
 }
 
 };

@@ -22,13 +22,32 @@
 #include <qstring.h>
 #include <qvariant.h>
 #include <qvaluevector.h>
+#include <qmutex.h>
 
 // pre-declaration of net-snmp structs so we don't need net-snmp headers
 struct snmp_session;
 
-#include <qmutex.h>
+#include <kdeversion.h>
+
+#define LIBKSNMP_VERSION \
+	KDE_MAKE_VERSION(0, 3, 0)
 
 namespace KSNMP {
+
+/**
+@brief Available version of SNMP requests
+
+This enum is used to select between different version of SNMP sessions.
+As for now, we have three kind of SNMP sessions: 1 and 2c which are community
+authenticated, and version 3 which is more complex.
+This enum is used to select the kind of session you are requesting.
+
+@note Only SNMP v1 or v2c are supported right now.
+*/
+enum SNMPVer {
+	V1,	///< Version 1
+	V2c	///< Version 2c
+};
 
 /**
 @brief Initialize the library
@@ -231,6 +250,15 @@ public:
 	*/
 	bool getVariables(const QStringList &oids, QValueVector<QVariant> &retvars, uint32_t &status);
 };
+
+/**
+@brief Quick create a session with the given parameters.
+@param peer Hostname or IP address of the host to connect to.
+@param community Name of the community to use for authentiation.
+@param version Version of protocol to use for the session.
+@return A pointer to a newly created session with the requested parameters.
+*/
+Session *createSession(const QString &peer, const QString &community, SNMPver version);
 
 };
 
