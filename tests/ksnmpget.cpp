@@ -23,6 +23,16 @@
 #include <klocale.h>
 #include <kdebug.h>
 
+#ifdef HAVE_CONFIG_H
+#include "config.h"
+#endif
+
+#ifdef HAVE_STDINT_H
+# include <stdint.h>
+#elif defined HAVE_SYS_TYPES_H
+# include <sys/types.h>
+#endif
+
 #include <libksnmp/session1.h>
 #include <libksnmp/session2c.h>
 
