@@ -3,18 +3,11 @@
 AM_INIT_AUTOMAKE(libksnmp, 0.3)
 
 AC_CHECK_PROG([netsnmpconfig], [net-snmp-config], [yes], [no])
-
-if test "$netsnmpconfig" = "yes"; then
-	AC_LANG_C
-
-	saveLIBS=$LIBS
-	saveLDFLAGS=$LDFLAGS
-	
-	LIBS="$LIBS $(net-snmp-config --libs)"
-	LDFLAGS="$LDFLAGS $(net-snmp-config --ldflags)"
-	
-	KDE_CHECK_LIB(netsnmp, init_snmp, [NETSNMP_LIBS="$(net-snmp-config --libs)"; NETSNMP_LDFLAGS="$(net-snmp-config --ldflags)"], , [$(net-snmp-config --libs) $(net-snmp-config --ldflags)])
+if test "$netsnmpconfig" = "no"; then
+	AC_FAILURE([Unable to find net-snmp-config.])
 fi
+
+KDE_CHECK_LIB(netsnmp, init_snmp, [NETSNMP_LIBS="$(net-snmp-config --libs)"; NETSNMP_LDFLAGS="$(net-snmp-config --ldflags)"], , [$(net-snmp-config --libs) $(net-snmp-config --ldflags)])
 
 AC_SUBST(NETSNMP_LIBS)
 AC_SUBST(NETSNMP_LDFLAGS)
