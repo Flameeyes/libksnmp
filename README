@@ -18,4 +18,9 @@ read it.
 This is an experimental library for now, every contribution is well accepted,
 if you want a CVS access to hack around, just contact me.
 
+About the tests in the tests/ subdirectory, they are testcases I created to
+verify some conditions which led me into trouble when working with libksnmp.
+They should work, someway, but they are surely something you don't need too
+much. See them for example on how to use the library, anyway.
+
 Diego "Flameeyes" Pettenò - flameeyes@users.berlios.de
