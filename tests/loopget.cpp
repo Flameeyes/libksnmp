@@ -41,7 +41,7 @@
 static const char description[] =
     I18N_NOOP("Test for libksnmp, get a variable in a defined loop");
 
-static const char version[] = "20050211";
+static const char version[] = "20050218";
 
 static KCmdLineOptions options[] =
 {
@@ -51,7 +51,6 @@ static KCmdLineOptions options[] =
 	{ "+oid", I18N_NOOP("Oid to request via SNMP"), NULL },
 	{ "+[numloop]", I18N_NOOP("Number of iterations in the loop"), "100" },
 	{ "+[delay]", I18N_NOOP("Delay between reads, in milliseconds"), "1000" },
-//	{ "+[URL]", I18N_NOOP( "Document to open." ), 0 },
 	KCmdLineLastOption
 };
 
@@ -113,6 +112,7 @@ int main(int argc, char **argv)
 	}
 	
 endofmain:
+	delete session;
 	args->clear();
 	KSNMP::shutdown();
 	

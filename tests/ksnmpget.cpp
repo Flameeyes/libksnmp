@@ -41,7 +41,7 @@
 static const char description[] =
     I18N_NOOP("Test for libksnmp, a snmpget replacement");
 
-static const char version[] = "20050211";
+static const char version[] = "20050218";
 
 static KCmdLineOptions options[] =
 {
@@ -49,7 +49,6 @@ static KCmdLineOptions options[] =
 	{ "V <version>", I18N_NOOP("SNMP version to use, one of 1 or 2c, default 1"), "1" },
 	{ "+agent", I18N_NOOP("Address of the agent to request the data from"), NULL },
 	{ "+oid", I18N_NOOP("Oids to request via SNMP"), NULL },
-//	{ "+[URL]", I18N_NOOP( "Document to open." ), 0 },
 	KCmdLineLastOption
 };
 
@@ -114,6 +113,7 @@ int main(int argc, char **argv)
 	
 
 endofmain:
+	delete session;
 	args->clear();
 	KSNMP::shutdown();
 	

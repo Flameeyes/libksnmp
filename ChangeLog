@@ -6,6 +6,7 @@
 	* Added test for the new Device1213::getIfIndex() function (name2index).
 	* Changed configure.in.in to use a better check (no need to do the
 	  check by hand, don't remember why I was doing this).
+	* Delete the session instance in tests.
 
 2005-02-16 Diego 'Flameeyes' Pettenò <flameeyes@users.berlios.de>
 	* Added LIBKSNMP_VERSION macro for test for version of library for
