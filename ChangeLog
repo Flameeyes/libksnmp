@@ -1,3 +1,12 @@
+2005-02-18 Diego 'Flameeyes' Pettenò <flameeyes@users.berlios.de>
+	* Added a function to get the interface index from the interface name
+	  (ifDescr field).
+	* Added a flagmask to define which values should be get when requesting
+	  interfaces.
+	* Added test for the new Device1213::getIfIndex() function (name2index).
+	* Changed configure.in.in to use a better check (no need to do the
+	  check by hand, don't remember why I was doing this).
+
 2005-02-16 Diego 'Flameeyes' Pettenò <flameeyes@users.berlios.de>
 	* Added LIBKSNMP_VERSION macro for test for version of library for
 	  future backward compatibility for software.
@@ -8,8 +17,3 @@
 	* Fixed tests to compile on some configurations in which uint32_t is
 	  not defined.
 	* Cleanup of configure checks for net-snmp, now should work better.
-	* Added a function to get the interface index from the interface name
-	  (ifDescr field).
-	* Added a flagmask to define which values should be get when requesting
-	  interfaces.
-	* Added test for the new Device1213::getIfIndex() function (name2index).
