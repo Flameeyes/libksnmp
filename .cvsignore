@@ -8,3 +8,4 @@ configure.files
 configure.in
 stamp-h.in
 
+debug
