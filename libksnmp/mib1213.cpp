@@ -153,7 +153,7 @@ void Device1213::cacheIpSettings()
 	m_cache["ipDefaultTTL.0"] = vars[1];
 }
 
-Device1213::Interface Device1213::getInterface(uint32_t index, bool nocache)
+Device1213::Interface Device1213::getInterface(uint32_t index, bool nocache, uint64_t what)
 {
 	static const Interface bogus;
 	if ( index > requestValue("ifNumber.0").toUInt() || ! index )
@@ -168,61 +168,112 @@ Device1213::Interface Device1213::getInterface(uint32_t index, bool nocache)
 	m_ifCache[index].ifIndex = index;
 	
 	QStringList variables;
-	variables << "ifDescr." + QString::number(index)
-		<< "ifType." + QString::number(index)
-		<< "ifMtu." + QString::number(index)
-		<< "ifSpeed." + QString::number(index)
-		<< "ifPhysAddress." + QString::number(index)
-		<< "ifAdminStatus." + QString::number(index)
-		<< "ifOperStatus." + QString::number(index)
-		<< "ifLastChange." + QString::number(index)
-		<< "ifInOctets." + QString::number(index)
-		<< "ifInUcastPkts." + QString::number(index)
-		<< "ifInNUcastPkts." + QString::number(index)
-		<< "ifInDiscards." + QString::number(index)
-		<< "ifInErrors." + QString::number(index)
-		<< "ifInUnknownProtos." + QString::number(index)
-		<< "ifOutOctets." + QString::number(index)
-		<< "ifOutUcastPkts." + QString::number(index)
-		<< "ifOutNUcastPkts." + QString::number(index)
-		<< "ifOutDiscards." + QString::number(index)
-		<< "ifOutErrors." + QString::number(index)
-		<< "ifOutQLen." + QString::number(index);
+	if ( what & getDescr )
+		variables << "ifDescr." + QString::number(index);
+	if ( what & getType )
+		variables << "ifType." + QString::number(index);
+	if ( what & getMtu )
+		variables << "ifMtu." + QString::number(index);
+	if ( what & getSpeed )
+		variables << "ifSpeed." + QString::number(index);
+	if ( what & getPhysAddress )
+		variables << "ifPhysAddress." + QString::number(index);
+	if ( what & getAdminStatus )
+		variables << "ifAdminStatus." + QString::number(index);
+	if ( what & getOperStatus )
+		variables << "ifOperStatus." + QString::number(index);
+	if ( what & getLastChange )
+		variables << "ifLastChange." + QString::number(index);
+	if ( what & getInOctets )
+		variables << "ifInOctets." + QString::number(index);
+	if ( what & getInUcastPkts )
+		variables << "ifInUcastPkts." + QString::number(index);
+	if ( what & getInNUcastPkts )
+		variables << "ifInNUcastPkts." + QString::number(index);
+	if ( what & getInDiscards )
+		variables << "ifInDiscards." + QString::number(index);
+	if ( what & getInErrors )
+		variables << "ifInErrors." + QString::number(index);
+	if ( what & getInUnknownProtos )
+		variables << "ifInUnknownProtos." + QString::number(index);
+	if ( what & getOutOctets )
+		variables << "ifOutOctets." + QString::number(index);
+	if ( what & getOutUcastPkts )
+		variables << "ifOutUcastPkts." + QString::number(index);
+	if ( what & getOutNUcastPkts )
+		variables << "ifOutNUcastPkts." + QString::number(index);
+	if ( what & getOutDiscards )
+		variables << "ifOutDiscards." + QString::number(index);
+	if ( what & getOutErrors )
+		variables << "ifOutErrors." + QString::number(index);
+	if ( what & getOutQLen )
+		variables << "ifOutQLen." + QString::number(index);
 	
 	QValueVector<QVariant> vars(variables.size());
 	uint32_t status;
 	if ( ! m_session->getVariables(variables, vars, status) )
 		return bogus;
 	
-	m_ifCache[index].ifDescr = vars[0].toString();
-	m_ifCache[index].ifType = vars[1].toInt();
-	m_ifCache[index].ifMtu = vars[2].toInt();
-	m_ifCache[index].ifSpeed = vars[3].toInt();
-	m_ifCache[index].ifPhysAddress = vars[4].toByteArray();
-	m_ifCache[index].ifAdminStatus = vars[5].toInt();
-	m_ifCache[index].ifOperStatus = vars[6].toInt();
-	m_ifCache[index].ifLastChange = vars[7].toInt();
-	m_ifCache[index].ifInOctets = vars[8].toInt();
-	m_ifCache[index].ifInUcastPkts = vars[9].toInt();
-	m_ifCache[index].ifInNUcastPkts = vars[10].toInt();
-	m_ifCache[index].ifInDiscards = vars[11].toInt();
-	m_ifCache[index].ifInErrors = vars[12].toInt();
-	m_ifCache[index].ifInUnknownProtos = vars[13].toInt();
-	m_ifCache[index].ifOutOctets = vars[14].toInt();
-	m_ifCache[index].ifOutUcastPkts = vars[15].toInt();
-	m_ifCache[index].ifOutNUcastPkts = vars[16].toInt();
-	m_ifCache[index].ifOutDiscards = vars[17].toInt();
-	m_ifCache[index].ifOutErrors = vars[18].toInt();
-	m_ifCache[index].ifOutQLen = vars[19].toInt();
+	int i = 0;
+	if ( what & getDescr )
+		m_ifCache[index].ifDescr = vars[i++].toString();
+	if ( what & getType )
+		m_ifCache[index].ifType = vars[i++].toInt();
+	if ( what & getMtu )
+		m_ifCache[index].ifMtu = vars[i++].toInt();
+	if ( what & getSpeed )
+		m_ifCache[index].ifSpeed = vars[i++].toInt();
+	if ( what & getPhysAddress )
+		m_ifCache[index].ifPhysAddress = vars[i++].toByteArray();
+	if ( what & getAdminStatus )
+		m_ifCache[index].ifAdminStatus = vars[i++].toInt();
+	if ( what & getOperStatus )
+		m_ifCache[index].ifOperStatus = vars[i++].toInt();
+	if ( what & getLastChange )
+		m_ifCache[index].ifLastChange = vars[i++].toInt();
+	if ( what & getInOctets )
+		m_ifCache[index].ifInOctets = vars[i++].toInt();
+	if ( what & getInUcastPkts )
+		m_ifCache[index].ifInUcastPkts = vars[i++].toInt();
+	if ( what & getInNUcastPkts )
+		m_ifCache[index].ifInNUcastPkts = vars[i++].toInt();
+	if ( what & getInDiscards )
+		m_ifCache[index].ifInDiscards = vars[i++].toInt();
+	if ( what & getInErrors )
+		m_ifCache[index].ifInErrors = vars[i++].toInt();
+	if ( what & getInUnknownProtos )
+		m_ifCache[index].ifInUnknownProtos = vars[i++].toInt();
+	if ( what & getOutOctets )
+		m_ifCache[index].ifOutOctets = vars[i++].toInt();
+	if ( what & getOutUcastPkts )
+		m_ifCache[index].ifOutUcastPkts = vars[i++].toInt();
+	if ( what & getOutNUcastPkts )
+		m_ifCache[index].ifOutNUcastPkts = vars[i++].toInt();
+	if ( what & getOutDiscards )
+		m_ifCache[index].ifOutDiscards = vars[i++].toInt();
+	if ( what & getOutErrors )
+		m_ifCache[index].ifOutErrors = vars[i++].toInt();
+	if ( what & getOutQLen )
+		m_ifCache[index].ifOutQLen = vars[i++].toInt();
 	
 	return m_ifCache[index];
 }
 
-void Device1213::readInterfaces()
+void Device1213::readInterfaces(uint64_t what)
 {
 	uint maxIf = requestValue("ifNumber.0").toUInt();
 	for(uint i = 1; i <= maxIf; i++)
-		getInterface(i, true);
+		getInterface(i, true, what);
+}
+
+uint32_t Device1213::getIfIndex(const QString &name, bool cache = true)
+{
+	uint maxIf = requestValue("ifNumber.0").toUInt();
+	for(uint i = 1; i < maxIf; i++)
+		if ( m_ifCache[i].ifDescr == name )
+			return i;
+	
+	return 0;
 }
 
 }

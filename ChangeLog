@@ -8,3 +8,7 @@
 	* Fixed tests to compile on some configurations in which uint32_t is
 	  not defined.
 	* Cleanup of configure checks for net-snmp, now should work better.
+	* Added a function to get the interface index from the interface name
+	  (ifDescr field).
+	* Added a flagmask to define which values should be get when requesting
+	  interfaces.

@@ -68,6 +68,59 @@ public:
 		uint32_t ifOutErrors;	///< Interface transmitted packets w/ errors
 		uint32_t ifOutQLen;	///< Interface Queue Len
 	};
+	
+//@{
+/**
+@name ifflags Intefaces' fields' flags
+@brief Flags used to define which fields should be get from the interface
+
+These flags can be used to select which fields from an interface should be
+cached.
+They are useful for example when you simply need to get the interface name,
+type and index instead of every statistics.
+
+
+*/
+	static const uint64_t getIndex		= 0x0000000000000001;
+	static const uint64_t getDescr		= 0x0000000000000002;
+	static const uint64_t getAdminStatus	= 0x0000000000000004;
+	static const uint64_t getOperStatus	= 0x0000000000000008;
+	static const uint64_t getType		= 0x0000000000000010;
+	static const uint64_t getSpeed		= 0x0000000000000020;
+	static const uint64_t getPhysAddress	= 0x0000000000000040;
+	static const uint64_t getMtu		= 0x0000000000000080;
+	static const uint64_t getLastChange	= 0x0000000000000100;
+	
+	static const uint64_t getInOctets	= 0x0000000000000200;
+	static const uint64_t getInUcastPkts	= 0x0000000000000400;
+	static const uint64_t getInNUcastPkts	= 0x0000000000000800;
+	static const uint64_t getInDiscards	= 0x0000000000001000;
+	static const uint64_t getInErrors	= 0x0000000000002000;
+	static const uint64_t getInUnknwonProtos= 0x0000000000004000;
+	
+	static const uint64_t getOutOctets	= 0x0000000000008000;
+	static const uint64_t getOutUcastPkts	= 0x0000000000010000;
+	static const uint64_t getOutNUCastPkgts	= 0x0000000000020000;
+	static const uint64_t getOutDiscards	= 0x0000000000040000;
+	static const uint64_t getOutErrors	= 0x0000000000080000;
+	static const uint64_t getOutQLen	= 0x0000000000100000;
+//@}
+
+//@{
+/**
+@name metaifflags Flags for "meta" fields
+@brief Flags used to suppress mnemonic constants of agregation of fields
+
+You can use these flags to define some subset of the entire fields without the
+need to specify them one-by-one
+*/
+
+	static const uint64_t getAll		= 0xFFFFFFFFFFFFFFFF;
+	static const uint64_t getNone		= 0x0000000000000000;
+	
+	static const uint64_t getID		= getIndex | getDescr | getType;
+	static const uint64_t getLoad		= getInOctets | getOutOctets;
+//@}
 
 protected:
 	/**
@@ -143,8 +196,9 @@ public:
 	@param[in] index Index of the interface to get the data for
 	@param[in] nocache If true, the interface will be re-read from the device instead of given
 		from the cache
+	@param[in] what Mask using \ref ifflags to define which field to get
 	*/
-	Interface getInterface(uint32_t index, bool nocache = false);
+	Interface getInterface(uint32_t index, bool nocache = false, uint64_t what = getAll);
 	
 	/**
 	@brief Completely re-read all the interfaces and cache them
@@ -152,7 +206,18 @@ public:
 	This function calls the getInterface(index, true) function for every interface in the device.
 	It's useful when we need to get all the statistics for the interfaces.
 	*/
-	void readInterfaces();
+	void readInterfaces(uint64_t what = getAll);
+	
+	/**
+	@brief Gets the interface number for the given interface name (ifDescr)
+	@param name Name of the remote interface (ifDescr.X value)
+	@param cache If true, the cache will be used, else it will be forced a complete reload
+	@return The ifIndex of the remote interface.
+	
+	This function is used to translate the remote interface's name to the index, suitable for
+	requesting data.
+	*/
+	uint32_t getIfIndex(const QString &name, bool cache = true);
 };
 
 }
