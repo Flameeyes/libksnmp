@@ -16,16 +16,24 @@
  *   If not, write to the Free Software Foundation, Inc., 59 Temple Place  *
  *   - Suite 330, Boston, MA 02111-1307, USA.                              *
  ***************************************************************************/
-#include "session.h"
-
 #ifdef HAVE_CONFIG_H
 #include "config.h"
 #endif
+
+#ifdef HAVE_STDINT_H
+# include <stdint.h>
+#elif defined HAVE_SYS_TYPES_H
+# include <sys/types.h>
+#endif
+
+#include "session.h"
 
 #include "fake-netsnmp-config.h"
 #include <net-snmp/net-snmp-includes.h>
 
 #include <qcstring.h>
+
+#include <kdebug.h>
 
 namespace KSNMP {
 
@@ -133,7 +141,7 @@ bool Session::getVariable(const QString &oid, QVariant &retvar, uint32_t &status
 	
 	if ( response->errstat != SNMP_ERR_NOERROR )
 	{
-		qWarning("Error in packet: %s", snmp_errstring(response->errstat));
+		kdWarning() << "Error in packet: " << snmp_errstring(response->errstat) << endl;
 		snmp_free_pdu(response);
 		return false;
 	}
@@ -189,7 +197,7 @@ bool Session::getVariables(const QStringList &oids, QValueVector<QVariant> &retv
 	
 	if ( response->errstat != SNMP_ERR_NOERROR )
 	{
-		qWarning("Error in packet: %s", snmp_errstring(response->errstat));
+		kdWarning() << "Error in packet: " << snmp_errstring(response->errstat) << endl;
 		snmp_free_pdu(response);
 		return false;
 	}

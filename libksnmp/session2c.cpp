@@ -16,11 +16,17 @@
  *   If not, write to the Free Software Foundation, Inc., 59 Temple Place  *
  *   - Suite 330, Boston, MA 02111-1307, USA.                              *
  ***************************************************************************/
-#include "session2c.h"
-
 #ifdef HAVE_CONFIG_H
 #include "config.h"
 #endif
+
+#ifdef HAVE_STDINT_H
+# include <stdint.h>
+#elif defined HAVE_SYS_TYPES_H
+# include <sys/types.h>
+#endif
+
+#include "session2c.h"
 
 #include "fake-netsnmp-config.h"
 #include <net-snmp/net-snmp-includes.h>
