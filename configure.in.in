@@ -4,10 +4,29 @@ AM_INIT_AUTOMAKE(libksnmp, 0.3)
 
 AC_CHECK_PROG([netsnmpconfig], [net-snmp-config], [yes], [no])
 if test "$netsnmpconfig" = "no"; then
-	AC_FAILURE([Unable to find net-snmp-config.])
+	AC_MSG_FAILURE([Unable to find net-snmp-config.])
 fi
 
 KDE_CHECK_LIB(netsnmp, init_snmp, [NETSNMP_LIBS="$(net-snmp-config --libs)"; NETSNMP_LDFLAGS="$(net-snmp-config --ldflags)"], , [$(net-snmp-config --libs) $(net-snmp-config --ldflags)])
 
 AC_SUBST(NETSNMP_LIBS)
 AC_SUBST(NETSNMP_LDFLAGS)
+
+#############################################################################
+# Those are all net-snmp inherited tests, needed to make libksnmp work on
+# non-x86 systems.
+
+# Older versions of MinGW do not define ssize_t in sys/types
+AC_MSG_CHECKING([for ssize_t])
+AC_CACHE_VAL(ac_cv_type_$1,
+[AC_EGREP_CPP([ssize_t@<:@^a-zA-Z_0-9@:>@],
+[#include <sys/types.h>
+#if STDC_HEADERS
+#include <stdlib.h>
+#include <stddef.h>
+#endif], [ac_cv_type_ssize_t=yes], [ac_cv_type_ssize_t=no])])
+
+AC_MSG_RESULT([$ac_cv_type_ssize_t])
+if test $ac_cv_type_ssize_t = yes; then
+  AC_DEFINE(HAVE_SSIZE_T, [], [got ssize_t?])
+fi
