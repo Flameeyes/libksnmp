@@ -73,9 +73,9 @@ void shutdown()
 
 Session::Session() :
 	m_peerName("localhost"),
-	m_session(NULL)
+	m_session(NULL),
+	m_mutex(false)
 {
-	snmp_session prova = initSession();
 }
 
 Session::~Session()
@@ -101,12 +101,11 @@ void Session::initSession(snmp_session &sess)
 	// Casts are to move the variables to the original type.
 	sess.retries = (int)m_retries;
 	sess.timeout = (long)m_timeout;
-	
-	return sess;
 }
 
 bool Session::getVariable(const QString &oid, QVariant &retvar, uint32_t &status)
 {
+	QMutexLocker ml(&m_mutex);
 	struct snmp_pdu *response = NULL;
 	if ( ! m_session )
 	{
@@ -147,6 +146,7 @@ bool Session::getVariable(const QString &oid, QVariant &retvar, uint32_t &status
 
 bool Session::getVariables(const QStringList &oids, QValueVector<QVariant> &retvars, uint32_t &status)
 {
+	QMutexLocker ml(&m_mutex);
 	int maxIterations = oids.count() / 5;
 	for(int i = 0; i < maxIterations; i++)
 		if ( ! getVariables(oids, retvars, status, i*5) )

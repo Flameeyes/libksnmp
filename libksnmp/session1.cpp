@@ -16,7 +16,7 @@
  *   If not, write to the Free Software Foundation, Inc., 59 Temple Place  *
  *   - Suite 330, Boston, MA 02111-1307, USA.                              *
  ***************************************************************************/
-#include <libksnmp/session1.h>
+#include "session1.h"
 
 #ifdef HAVE_CONFIG_H
 #include "config.h"
@@ -39,6 +39,7 @@ Session1::~Session1()
 
 bool Session1::open()
 {
+	QMutexLocker ml(&m_mutex);
 	// Initialize a "session" that defines who we're going to talk to
 	netsnmp_session session;
 	initSession(session);

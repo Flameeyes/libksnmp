@@ -39,6 +39,7 @@ Session2c::~Session2c()
 
 bool Session2c::open()
 {
+	QMutexLocker ml(&m_mutex);
 	// Initialize a "session" that defines who we're going to talk to
 	netsnmp_session session;
 	initSession(session);

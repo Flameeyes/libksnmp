@@ -26,6 +26,8 @@
 // pre-declaration of net-snmp structs so we don't need net-snmp headers
 struct snmp_session;
 
+#include <qmutex.h>
+
 namespace KSNMP {
 
 /**
@@ -80,6 +82,15 @@ protected:
 	session pointer when the session is opened.
 	*/
 	snmp_session *m_session;
+	
+	/**
+	@brief Mutex for thread safety
+	
+	Getting more request from different threads at one time can lead to
+	errors in sessions, with this mutex we make sure that only one thread
+	at a time take access to the session.
+	*/
+	QMutex m_mutex;
 
 	/**
 	@brief Gets many variables from the SNMP session [reiterated version]
