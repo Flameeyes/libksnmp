@@ -12,3 +12,4 @@
 	  (ifDescr field).
 	* Added a flagmask to define which values should be get when requesting
 	  interfaces.
+	* Added test for the new Device1213::getIfIndex() function (name2index).
