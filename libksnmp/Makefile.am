@@ -1,4 +1,4 @@
-INCLUDES = $(all_includes) -I$(top_srcdir)
+INCLUDES = -I$(top_srcdir) $(all_includes)
 METASOURCES = AUTO
 lib_LTLIBRARIES = libksnmp.la
 libksnmp_la_LDFLAGS = $(all_libraries)

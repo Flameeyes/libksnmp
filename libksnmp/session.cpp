@@ -1,21 +1,20 @@
 /***************************************************************************
- *   Copyright (C) 2004 by Diego "Flameeyes" Pettenò                       *
- *   dgp85@users.sourceforge.net                                           *
+ *   Copyright (C) 2004 by Diego 'Flameeyes' Pettenò                       *
+ *   flameeyes@users.berlios.de                                            *
  *                                                                         *
- *   This program is free software; you can redistribute it and/or modify  *
- *   it under the terms of the GNU General Public License as published by  *
- *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   *
+ *   This library is free software; you can redistribute it and/or         *
+ *   modify it under the terms of the GNU Library General Public           *
+ *   License version 2 as published by the Free Software Foundation.       *
  *                                                                         *
- *   This program is distributed in the hope that it will be useful,       *
+ *   This library is distributed in the hope that it will be useful,       *
  *   but WITHOUT ANY WARRANTY; without even the implied warranty of        *
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         *
- *   GNU General Public License for more details.                          *
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU     *
+ *   Library General Public License for more details.                      *
  *                                                                         *
- *   You should have received a copy of the GNU General Public License     *
- *   along with this program; if not, write to the                         *
- *   Free Software Foundation, Inc.,                                       *
- *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
+ *   You should have received a copy of the GNU Library General Public     *
+ *   License along with this library; see the file COPYING.LIB.            *
+ *   If not, write to the Free Software Foundation, Inc., 59 Temple Place  *
+ *   - Suite 330, Boston, MA 02111-1307, USA.                              *
  ***************************************************************************/
 #include "session.h"
 
@@ -76,6 +75,7 @@ Session::Session() :
 	m_peerName("localhost"),
 	m_session(NULL)
 {
+	snmp_session prova = initSession();
 }
 
 Session::~Session()
@@ -92,15 +92,17 @@ void Session::close()
 	}
 }
 
-void Session::initSession(snmp_session *session)
+void Session::initSession(snmp_session &sess)
 {
-	snmp_sess_init(session); // Setup defaults
-	session->peername = new char[m_peerName.length()+1];
-	strncpy(session->peername, m_peerName.latin1(), m_peerName.length()+1);
+	snmp_sess_init(&sess); // Setup defaults
+	sess.peername = new char[m_peerName.length()+1];
+	strncpy(sess.peername, m_peerName.latin1(), m_peerName.length()+1);
 	
 	// Casts are to move the variables to the original type.
-	session->retries = (int)m_retries;
-	session->timeout = (long)m_timeout;
+	sess.retries = (int)m_retries;
+	sess.timeout = (long)m_timeout;
+	
+	return sess;
 }
 
 bool Session::getVariable(const QString &oid, QVariant &retvar, uint32_t &status)
