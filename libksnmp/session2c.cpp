@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2004 by Diego 'Flameeyes' Pettenò                       *
+ *   Copyright (C) 2004-2005 by Diego 'Flameeyes' Pettenò                  *
  *   flameeyes@users.berlios.de                                            *
  *                                                                         *
  *   This library is free software; you can redistribute it and/or         *

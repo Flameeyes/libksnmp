@@ -1,0 +1,21 @@
+libksnmp 0.1
+Copyright (c) 2004-2005 Diego "Flameeyes" Pettenò
+
+This library was initially wrote for my ATMOSphere project
+(http://atmosphere.sourceforge.net/) to simplify access ot SNMP statistics
+for routers compliant with this protocol.
+
+It's just a wrapper around net-snmp, which does all the dirt work in a C way.
+Also, this library is useful to avoid hacking around net-snmp "bugs" (or
+"features") with autoconf headers.
+
+At the moment libksnmp can be used to access v1 and v2c compatible devices,
+in readonly way, with a simplified access to RFC1213-compliant devices.
+
+For information on use of the library, please generate the doxygen apidoc, and
+read it.
+
+This is an experimental library for now, every contribution is well accepted,
+if you want a CVS access to hack around, just contact me.
+
+Diego "Flameeyes" Pettenò - flameeyes@users.berlios.de
