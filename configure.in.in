@@ -1,0 +1,33 @@
+#MIN_CONFIG(3.2.0)
+
+AM_INIT_AUTOMAKE(libksnmp, 0.1)
+AC_C_BIGENDIAN
+AC_CHECK_KDEMAXPATHLEN
+
+AC_MSG_CHECKING(for net-snmp library)
+cat > netsnmptest.$ac_ext <<EOF
+
+#include <net-snmp/net-snmp-config.h>
+#include <net-snmp/net-snmp-includes.h>
+
+int main()
+{
+        init_snmp("test");
+}
+
+EOF
+
+ac_try="$CXX netsnmptest.$ac_ext $(net-snmp-config --libs) $(net-snmp-config --ldflags)"
+
+if AC_TRY_EVAL(ac_try) then
+  AC_MSG_RESULT([found])
+  NETSNMP_LIBS="$(net-snmp-config --libs)"
+  NETSNMP_LDFLAGS="$(net-snmp-config --ldflags)"
+else
+  AC_MSG_RESULT([not found.]);
+fi
+
+rm netsnmptest.*
+
+AC_SUBST(NETSNMP_LIBS)
+AC_SUBST(NETSNMP_LDFLAGS)
