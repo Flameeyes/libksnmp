@@ -1,0 +1,10 @@
+2005-02-16 Diego 'Flameeyes' Pettenò <flameeyes@users.berlios.de>
+	* Added LIBKSNMP_VERSION macro for test for version of library for
+	  future backward compatibility for software.
+	* Added SNMPver enum to define the version of SNMP protocol to use
+	  (imported from KNetLoad).
+	* Added createSession() commodity function to create a session without
+	  need to check for version to use.
+	* Fixed tests to compile on some configurations in which uint32_t is
+	  not defined.
+	* Cleanup of configure checks for net-snmp, now should work better.
