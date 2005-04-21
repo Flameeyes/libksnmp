@@ -1,3 +1,10 @@
+== Release 0.3
+
+2005-04-21 Diego 'Flameeyes' Pettenò <flameeyes@users.berlios.de>
+	* Added pkgconfig file to allow knetload find libksnmp using pkg-config
+	  instead of searching for it.
+	* Fixed compilation under amd64 platform.
+
 2005-02-18 Diego 'Flameeyes' Pettenò <flameeyes@users.berlios.de>
 	* Added a function to get the interface index from the interface name
 	  (ifDescr field).
