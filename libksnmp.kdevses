@@ -1,19 +1,25 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
 <!DOCTYPE KDevPrjSession>
 <KDevPrjSession>
- <DocsAndViews NumberOfDocuments="4" >
-  <Doc0 NumberOfViews="1" URL="file:///home/flame/devel/sfcvs/libksnmp/tests/ksnmpget.cpp" >
-   <View0 line="47" Type="Source" />
+ <DocsAndViews NumberOfDocuments="6" >
+  <Doc0 NumberOfViews="1" URL="file:///home/flame/devel/projects/libksnmp/configure.in.in" >
+   <View0 line="34" Type="Source" />
   </Doc0>
-  <Doc1 NumberOfViews="1" URL="file:///home/flame/devel/sfcvs/libksnmp/libksnmp/session.cpp" >
-   <View0 line="185" Type="Source" />
+  <Doc1 NumberOfViews="1" URL="file:///home/flame/devel/projects/libksnmp/libksnmp/fake-netsnmp-config.h" >
+   <View0 line="24" Type="Source" />
   </Doc1>
-  <Doc2 NumberOfViews="1" URL="file:///home/flame/devel/sfcvs/libksnmp/tests/loopget.cpp" >
-   <View0 line="82" Type="Source" />
+  <Doc2 NumberOfViews="1" URL="file:///home/flame/devel/projects/libksnmp/libksnmp/session2c.cpp" >
+   <View0 line="0" Type="Source" />
   </Doc2>
-  <Doc3 NumberOfViews="1" URL="file:///home/flame/devel/sfcvs/libksnmp/tests/Makefile.am" >
-   <View0 line="5" Type="Source" />
+  <Doc3 NumberOfViews="1" URL="file:///home/flame/devel/projects/libksnmp/libksnmp/session.cpp" >
+   <View0 line="22" Type="Source" />
   </Doc3>
+  <Doc4 NumberOfViews="1" URL="file:///home/flame/devel/projects/libksnmp/libksnmp/libksnmp.pc" >
+   <View0 line="11" Type="Source" />
+  </Doc4>
+  <Doc5 NumberOfViews="1" URL="file:///home/flame/devel/projects/libksnmp/libksnmp/Makefile.am" >
+   <View0 line="18" Type="Source" />
+  </Doc5>
  </DocsAndViews>
  <pluginList>
   <kdevdebugger>

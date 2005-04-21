@@ -30,3 +30,5 @@ AC_MSG_RESULT([$ac_cv_type_ssize_t])
 if test $ac_cv_type_ssize_t = yes; then
   AC_DEFINE(HAVE_SSIZE_T, [], [got ssize_t?])
 fi
+
+AC_OUTPUT([ libksnmp/libksnmp.pc ])

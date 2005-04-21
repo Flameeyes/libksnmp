@@ -11,3 +11,8 @@ ksnmpincludedir = $(includedir)/libksnmp
 ksnmpinclude_HEADERS = session.h mib1213.h device.h session1.h session2c.h
 
 noinst_HEADERS = fake-netsnmp-config.h
+
+pkgconfigdir = $(libdir)/pkgconfig
+pkgconfig_DATA = libksnmp.pc
+
+EXTRA_DIST = libksnmp.pc.in

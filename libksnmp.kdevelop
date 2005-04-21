@@ -43,19 +43,29 @@
         <cxxflags>-O2 -g0</cxxflags>
       </optimized>
       <debug>
-        <configargs>--enable-debug=full</configargs>
+        <configargs>--enable-debug=full --prefix=/home/flame/devel/prefix</configargs>
         <builddir>debug</builddir>
         <ccompiler>kdevgccoptions</ccompiler>
         <cxxcompiler>kdevgppoptions</cxxcompiler>
         <f77compiler>kdevg77options</f77compiler>
         <cxxflags>-O0 -g3</cxxflags>
         <envvars/>
+        <topsourcedir/>
+        <cppflags/>
+        <ldflags/>
+        <ccompilerbinary/>
+        <cxxcompilerbinary/>
+        <f77compilerbinary/>
+        <cflags/>
+        <f77flags/>
       </debug>
     </configurations>
     <make>
       <envvars>
-        <envvar value="1" name="WANT_AUTOCONF_2_5" />
+        <envvar value="2.5" name="WANT_AUTOCONF" />
+        <envvar value="1.6" name="WANT_AUTOMAKE" />
         <envvar value="1" name="WANT_AUTOMAKE_1_6" />
+        <envvar value="1" name="WANT_AUTOCONF_2_5" />
       </envvars>
       <abortonerror>false</abortonerror>
       <numberofjobs>1</numberofjobs>
