@@ -96,8 +96,8 @@ int main(int argc, char **argv)
 		goto endofmain;
 	}
 	
-	const int loop = atoi( args->arg(2) );
-	const int delay = atoi( args->arg(3) ) * 1000;
+	static const int loop = atoi( args->arg(2) );
+	static const int delay = atoi( args->arg(3) ) * 1000;
 	
 	for(int i = 0; i < loop; i++)
 	{

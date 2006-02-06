@@ -67,6 +67,7 @@ int main(int argc, char **argv)
 	int ret = 0;
 	
 	KSNMP::Session *session = NULL;
+	KSNMP::Device1213 *dev = NULL;
 	if ( args->getOption("V") == "1" )
 		session = new KSNMP::Session1("", args->getOption("c"));
 	else if ( args->getOption("V") == "2c" )
@@ -93,7 +94,7 @@ int main(int argc, char **argv)
 		goto endofmain;
 	}
 	
-	KSNMP::Device1213 *dev = new KSNMP::Device1213(session);
+	dev = new KSNMP::Device1213(session);
 	
 	std::cout << "ifIndex: " << dev->getIfIndex(args->arg(1), false) << std::endl;
 	
